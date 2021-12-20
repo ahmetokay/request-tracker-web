@@ -1,0 +1,60 @@
+{
+    "common": {
+        "changeLanguage": "Dili Değiştir",
+        "buttons": {
+            "login": "Giriş",
+            "create": "Yeni",
+            "edit": "Düzenle",
+            "delete": "Sil",
+            "yes": "Evet",
+            "no": "Hayır",
+            "submit": "Kaydet",
+            "search": "Ara",
+            "clear": "Temizle",
+            "cancel": "İptal",
+            "update": "Güncelle",
+            "refresh": "Yenile",
+            "back": "Geri",
+            "detail": "Detay"
+        },
+        "label": {
+            "error": "Hata",
+            "signIn": "Giriş",
+            "paginator": "{totalRecords} toplam kayıt. Kayıtlar {first} - {last}",
+            "notAuthorized": "Yetkiniz yoktur",
+            "loginError": "Hatalı kullanıcı adı veya şifre",
+            "noDataFound": "Kayıt bulunamadı",
+            "deleteConfirm": "Emin misiniz?",
+            "createHeader": "Kayıt Ekle",
+            "editHeader": "Kayıt Düzenle"
+        },
+        "dialog": {
+            "logoutTitle": "Emin misin?",
+            "logoutMessage": "Uygulamadan çıkmak istediğinize emin misiniz?"
+        }
+    },
+    "menu": {
+        "dashboard": "Pano",
+        "requestManagement": "İstek Yönetimi"
+    },
+    "roles": {
+        "roleAdmin": "Admin",
+        "roleUser": "Kullanıcı"
+    },
+    "pages": {
+        "login": {
+            "username": "Kullanıcı adı",
+            "password": "Şifre"
+        },
+        "requestManagement": {
+            "name": "İsim",
+            "port": "Port",
+            "protocol": "Protokol",
+            "requestType": "İstek Tipi",
+            "scheduledType": "Zamanlama Tipi",
+            "url": "Url",
+            "workspace": "Çalışma Alanı",
+            "delete": "İstek Sil"
+        }
+    }
+}

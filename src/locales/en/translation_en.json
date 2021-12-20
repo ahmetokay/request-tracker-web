@@ -1,0 +1,62 @@
+{
+    "common": {
+        "changeLanguage": "Change Language",
+        "buttons": {
+            "login": "Login",
+            "create": "New Item",
+            "edit": "Edit Item",
+            "delete": "Delete Item",
+            "yes": "Yes",
+            "no": "No",
+            "submit": "Submit",
+            "actions": "Actions",
+            "search": "Search",
+            "clear": "Clear",
+            "detailSearch": "Detail Search",
+            "cancel": "Cancel",
+            "update": "Update",
+            "refresh": "Refresh",
+            "back": "Back",
+            "detail": "Detail"
+        },
+        "label": {
+            "error": "Error",
+            "signIn": "Sign In",
+            "paginator": "{totalRecords} total record. Records {first} - {last}",
+            "notAuthorized": "Not Authorized",
+            "loginError": "Invalid username or password",
+            "noDataFound": "No data found",
+            "deleteConfirm": "Are you sure?",
+            "createHeader": "Create Item",
+            "editHeader": "Edit Item"
+        },
+        "dialog": {
+            "logoutTitle": "Are you sure?",
+            "logoutMessage": "Are you sure you want to quit the application?"
+        }
+    },
+    "menu": {
+        "dashboard": "Dashboard",
+        "requestManagement": "Request Management"
+    },
+    "roles": {
+        "roleAdmin": "Role Admin",
+        "roleUser": "Role User"
+    },
+    "pages": {
+        "login": {
+            "username": "Username",
+            "password": "Password"
+        },
+        "requestManagement": {
+            "name": "Name",
+            "port": "Port",
+            "protocol": "Protocol",
+            "requestType": "Request Type",
+            "scheduledType": "Scheduled Type",
+            "url": "Url",
+            "workspace": "Workspace",
+            "delete": "Delete Request"
+        }
+    }
+}
