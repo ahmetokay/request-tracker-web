@@ -20,7 +20,7 @@ import '../layout/layout.scss';
 import '../App.scss';
 import {Login} from "./Login";
 import {PrivateRoute} from "../components/PrivateRoute";
-import {EnumRole} from "../common/EnumRole";
+import {RoleConstants} from "../common/RoleConstants";
 import {RequestPage} from "./request/RequestPage";
 import {useTranslation} from "react-i18next";
 import AxiosApi from "../components/AxiosApi";
@@ -205,8 +205,8 @@ const Home = () => {
                 <div className="layout-main-container">
                     <div className="layout-main">
                         <Switch>
-                            <PrivateRoute role={EnumRole.USER} key="dashboard" exact path="/dashboard" component={<Dashboard/>}/>
-                            <PrivateRoute role={EnumRole.USER} key="request-page" exact path="/request-page" component={<RequestPage/>}/>
+                            <PrivateRoute role={RoleConstants.ROLE_USER} key="dashboard" exact path="/dashboard" component={<Dashboard/>}/>
+                            <PrivateRoute role={RoleConstants.ROLE_USER} key="request-page" exact path="/request-page" component={<RequestPage/>}/>
 
                             <Route path="/login" exact component={Login}/>
                         </Switch>

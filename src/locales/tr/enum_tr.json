@@ -1,0 +1,48 @@
+{
+  "protocolType": [
+    {
+      "name": "HTTP",
+      "value": "HTTP"
+    },
+    {
+      "name": "HTTPS",
+      "value": "HTTPS"
+    }
+  ],
+  "requestType": [
+    {
+      "name": "GET",
+      "value": "GET"
+    },
+    {
+      "name": "POST",
+      "value": "POST"
+    },
+    {
+      "name": "PUT",
+      "value": "PUT"
+    },
+    {
+      "name": "DELETE",
+      "value": "DELETE"
+    }
+  ],
+  "scheduledType": [
+    {
+      "name": "MIN 1",
+      "value": "MIN1"
+    },
+    {
+      "name": "MIN 15",
+      "value": "MIN15"
+    },
+    {
+      "name": "MIN 30",
+      "value": "MIN30"
+    },
+    {
+      "name": "MIN 60",
+      "value": "MIN60"
+    }
+  ]
+}

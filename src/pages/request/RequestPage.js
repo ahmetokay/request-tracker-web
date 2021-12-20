@@ -6,18 +6,23 @@ import {useTranslation} from "react-i18next";
 import {Button} from "primereact/button";
 import DeleteComponent from "../../components/DeleteComponent";
 import {Dialog} from "primereact/dialog";
-import InputText from "primereact/primereact.all.esm";
+import {InputText} from 'primereact/inputtext';
+import EnumService from "../../service/EnumService";
+import {Dropdown} from "primereact/dropdown";
+import WorkspaceService from "../../service/WorkspaceService";
 
 export const RequestPage = () => {
 
     const {t} = useTranslation();
 
     const [data, setData] = useState([]);
+    const [workspaceData, setWorkspaceData] = useState([]);
 
     const [loading, setLoading] = useState(false);
     const [selectedData, setSelectedData] = useState({});
 
     const [dialog, setDialog] = useState(false);
+
 
     const fetchData = () => {
         setLoading(true)
@@ -31,11 +36,15 @@ export const RequestPage = () => {
 
     useEffect(() => {
         fetchData();
+
+        WorkspaceService.list().then(response => {
+            setWorkspaceData(response)
+        })
     }, []);
 
-    const deleteData = (data) => {
+    const deleteData = (selectedData) => {
 
-        RequestService.deleteData(data).then(response => {
+        RequestService.deleteData(selectedData).then(response => {
             if (response) {
                 fetchData()
             }
@@ -43,7 +52,6 @@ export const RequestPage = () => {
     }
 
     const selectRow = (rowData) => {
-
         setSelectedData(rowData);
 
         setDialog(true);
@@ -63,6 +71,28 @@ export const RequestPage = () => {
             </>
         )
     }
+
+    const onChange = (e) => {
+        setSelectedData({...selectedData, [e.target.name]: e.target.value})
+    };
+
+    const saveData = () => {
+        if (selectedData.id) {
+            RequestService.updateData(selectedData).then(response => {
+                if (response) {
+                    fetchData()
+                }
+            })
+        } else {
+            RequestService.saveData(selectedData).then(response => {
+                if (response) {
+                    fetchData()
+                }
+            })
+        }
+
+        setDialog(false)
+    };
 
     return (
         <div className="grid">
@@ -94,25 +124,64 @@ export const RequestPage = () => {
                         <Column field="workspace.name" header={t('pages.requestManagement.workspace')}></Column>
                         <Column style={{width: '30px'}} body={editColumn}/>
                     </DataTable>
-
-                    <Dialog header={selectedData?.id === undefined ? t('common.label.createHeader') : t('common.label.editHeader')}
-                            visible={dialog} modal
-                            onHide={() => setDialog(false)}>
-                        <div className="p-fluid">
-
-                            {/*<input type="hidden" name="updateData" ref={register} value={selectedData.id ? "true" : "false"}/>*/}
-
-                            <label htmlFor="username" className="p-col-fixed"
-                                   style={{width: '100px'}}>{t('pages.userManagement.username')}</label>
-                            <div className="p-col">
-                                <InputText name="name" defaultValue={selectedData.name} />
-                            </div>
-
-                            <Button type="submit" className="p-button-success" label={t('common.buttons.submit')}/>
-                        </div>
-                    </Dialog>
                 </div>
             </div>
+
+            <Dialog
+                header={selectedData?.id === undefined ? t('common.label.createHeader') : t('common.label.editHeader')}
+                visible={dialog} modal onHide={() => setDialog(false)}>
+
+                <div className="p-fluid">
+                    <div className="field">
+                        <label>{t('pages.requestManagement.name')}</label>
+                        <InputText name="name" value={selectedData?.name} type="text" onChange={onChange}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.port')}</label>
+                        <InputText name="port" value={selectedData?.port} type="text" onChange={onChange}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.protocol')}</label>
+                        <Dropdown name="protocol" optionLabel='name' value={selectedData?.protocol}
+                                  options={EnumService.findEnum(t, 'protocolType')}
+                                  onChange={onChange}
+                                  placeholder={t('common.label.choose')}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.requestType')}</label>
+                        <Dropdown name="requestType" optionLabel='name' value={selectedData?.requestType}
+                                  options={EnumService.findEnum(t, 'requestType')}
+                                  onChange={onChange}
+                                  placeholder={t('common.label.choose')}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.scheduledType')}</label>
+                        <Dropdown name="scheduledType" optionLabel='name' value={selectedData?.scheduledType}
+                                  options={EnumService.findEnum(t, 'scheduledType')}
+                                  onChange={onChange}
+                                  placeholder={t('common.label.choose')}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.url')}</label>
+                        <InputText name="url" value={selectedData?.url} type="text" onChange={onChange}/>
+                    </div>
+
+                    <div className="field">
+                        <label>{t('pages.requestManagement.workspace')}</label>
+                        <Dropdown name="workspace" optionLabel='name' value={selectedData?.workspace}
+                                  options={workspaceData}
+                                  onChange={onChange}
+                                  placeholder={t('common.label.choose')}/>
+                    </div>
+
+                    <Button className="p-button-success" label={t('common.buttons.submit')} onClick={saveData}/>
+                </div>
+            </Dialog>
         </div>
     );
 }

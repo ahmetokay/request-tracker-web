@@ -28,7 +28,8 @@
             "noDataFound": "No data found",
             "deleteConfirm": "Are you sure?",
             "createHeader": "Create Item",
-            "editHeader": "Edit Item"
+            "editHeader": "Edit Item",
+            "choose": "Choose Item"
         },
         "dialog": {
             "logoutTitle": "Are you sure?",
