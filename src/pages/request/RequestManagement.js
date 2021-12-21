@@ -12,7 +12,6 @@ import {Dropdown} from "primereact/dropdown";
 import WorkspaceService from "../../service/WorkspaceService";
 import RequestHistoryService from "../../service/RequestHistoryService";
 import DateComponent from "../../components/DateComponent";
-import {InputTextarea} from "primereact/inputtextarea";
 import {ScrollPanel} from "primereact/scrollpanel";
 
 export const RequestManagement = () => {
@@ -135,7 +134,7 @@ export const RequestManagement = () => {
     };
 
     const historyBodyColumn = (rowData, column) => {
-        return <ScrollPanel style={{ width: '100%', height: '50px'}}>{rowData[column.field]}</ScrollPanel>
+        return <ScrollPanel style={{width: '100%', height: '50px'}}>{rowData[column.field]}</ScrollPanel>
     }
 
     return (
@@ -155,16 +154,19 @@ export const RequestManagement = () => {
 
                     <DataTable value={data}
                                loading={loading}
-                               dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
+                               dataKey="id" paginator rows={10} rowsPerPageOptions={[10, 50, 100]}
                                className="datatable-responsive"
                                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                                currentPageReportTemplate={t('common.label.paginator')}
                                emptyMessage={t('common.label.noDataFound')}>
                         <Column field="name" header={t('pages.requestManagement.name')}></Column>
                         <Column field="port" header={t('pages.requestManagement.port')}></Column>
-                        <Column field="protocol" header={t('pages.requestManagement.protocol')}></Column>
-                        <Column field="requestType" header={t('pages.requestManagement.requestType')}></Column>
-                        <Column field="scheduledType" header={t('pages.requestManagement.scheduledType')}></Column>
+                        <Column field="protocol" header={t('pages.requestManagement.protocol')}
+                                body={(rowData, column) => EnumService.findEnumValue(t, 'protocolType', rowData[column.field])}></Column>
+                        <Column field="requestType" header={t('pages.requestManagement.requestType')}
+                                body={(rowData, column) => EnumService.findEnumValue(t, 'requestType', rowData[column.field])}></Column>
+                        <Column field="scheduledType" header={t('pages.requestManagement.scheduledType')}
+                                body={(rowData, column) => EnumService.findEnumValue(t, 'scheduledType', rowData[column.field])}></Column>
                         <Column field="url" header={t('pages.requestManagement.url')}></Column>
                         <Column field="workspace.name" header={t('pages.requestManagement.workspace')}></Column>
                         <Column body={editColumn}/>
@@ -229,19 +231,20 @@ export const RequestManagement = () => {
             </Dialog>
 
             <Dialog
-                header={selectedData.name + ' ' + t('pages.requestHistory.title')} style={{ width: '50%'}}
+                header={t('pages.requestHistory.title', {requestName: selectedData?.name})} style={{width: '50%'}}
                 visible={requestDetailDialog} modal onHide={() => setRequestDetailDialog(false)}>
 
                 <DataTable value={requestHistoryData}
                            loading={loading}
-                           dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
+                           dataKey="id" paginator rows={10} rowsPerPageOptions={[10, 50, 100]}
                            className="datatable-responsive"
                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                            currentPageReportTemplate={t('common.label.paginator')}
                            emptyMessage={t('common.label.noDataFound')}>
                     <Column field="responseCode" header={t('pages.requestHistory.responseCode')}></Column>
                     <Column field="body" header={t('pages.requestHistory.body')} body={historyBodyColumn}></Column>
-                    <Column field="requestDate" header={t('pages.requestHistory.requestDate')} body={DateComponent.formatDate}></Column>
+                    <Column field="requestDate" header={t('pages.requestHistory.requestDate')}
+                            body={DateComponent.formatDate}></Column>
                 </DataTable>
             </Dialog>
         </div>

@@ -112,7 +112,7 @@ export const WorkspaceManagement = () => {
 
                     <DataTable value={data}
                                loading={loading}
-                               dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
+                               dataKey="id" paginator rows={10} rowsPerPageOptions={[10, 50, 100]}
                                className="datatable-responsive"
                                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                                currentPageReportTemplate={t('common.label.paginator')}

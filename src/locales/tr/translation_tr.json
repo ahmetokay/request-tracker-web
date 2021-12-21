@@ -59,7 +59,7 @@
             "delete": "İstek Sil"
         },
         "requestHistory": {
-            "title": "Request History",
+            "title": "'{{requestName}}' Request History",
             "responseCode": "Dönüş Kodu",
             "body": "Body",
             "requestDate": "İstek Zamanı"

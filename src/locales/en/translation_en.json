@@ -61,7 +61,7 @@
             "delete": "Delete Request"
         },
         "requestHistory": {
-            "title": "İstek Tarihçesi",
+            "title": "'{{requestName}}' İstek Tarihçesi",
             "responseCode": "Response Code",
             "body": "Body",
             "requestDate": "Request Date"
