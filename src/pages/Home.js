@@ -7,8 +7,6 @@ import {AppTopbar} from '../AppTopbar';
 import {AppFooter} from '../AppFooter';
 import {AppMenu} from '../AppMenu';
 
-import {Dashboard} from '../components/Dashboard';
-
 import PrimeReact from 'primereact/api';
 
 import 'primereact/resources/primereact.min.css';
@@ -21,10 +19,13 @@ import '../App.scss';
 import {Login} from "./Login";
 import {PrivateRoute} from "../components/PrivateRoute";
 import {RoleConstants} from "../common/RoleConstants";
-import {RequestPage} from "./request/RequestPage";
+import {RequestManagement} from "./request/RequestManagement";
 import {useTranslation} from "react-i18next";
 import AxiosApi from "../components/AxiosApi";
 import {Toast} from "primereact/toast";
+import {AppConfig} from "../AppConfig";
+import {Dashboard} from "./dashboard/Dashboard";
+import {WorkspaceManagement} from "./workspace/WorkspaceManagement";
 
 const Home = () => {
 
@@ -161,7 +162,8 @@ const Home = () => {
             label: '',
             items: [
                 {label: t('menu.dashboard'), to: '/dashboard'},
-                {label: t('menu.requestManagement'), to: '/request-page'}
+                {label: t('menu.requestManagement'), to: '/request'},
+                {label: t('menu.workspaceManagement'), to: '/workspace'}
             ]
         }
     ];
@@ -192,34 +194,37 @@ const Home = () => {
     });
 
     return (
-        <>
+        <div className={wrapperClass} onClick={onWrapperClick}>
             <Toast ref={toast}/>
-            <div className={wrapperClass} onClick={onWrapperClick}>
-                <AppTopbar onToggleMenuClick={onToggleMenuClick} layoutColorMode={layoutColorMode}
-                           mobileTopbarMenuActive={mobileTopbarMenuActive} onMobileTopbarMenuClick={onMobileTopbarMenuClick} onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}/>
 
-                <div className="layout-sidebar" onClick={onSidebarClick}>
-                    <AppMenu model={menu} onMenuItemClick={onMenuItemClick} layoutColorMode={layoutColorMode}/>
-                </div>
+            <AppTopbar onToggleMenuClick={onToggleMenuClick} layoutColorMode={layoutColorMode}
+                       mobileTopbarMenuActive={mobileTopbarMenuActive} onMobileTopbarMenuClick={onMobileTopbarMenuClick} onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}/>
 
-                <div className="layout-main-container">
-                    <div className="layout-main">
-                        <Switch>
-                            <PrivateRoute role={RoleConstants.ROLE_USER} key="dashboard" exact path="/dashboard" component={<Dashboard/>}/>
-                            <PrivateRoute role={RoleConstants.ROLE_USER} key="request-page" exact path="/request-page" component={<RequestPage/>}/>
-
-                            <Route path="/login" exact component={Login}/>
-                        </Switch>
-                    </div>
-
-                    <AppFooter layoutColorMode={layoutColorMode}/>
-                </div>
-
-                <CSSTransition classNames="layout-mask" timeout={{enter: 200, exit: 200}} in={mobileMenuActive} unmountOnExit>
-                    <div className="layout-mask p-component-overlay"></div>
-                </CSSTransition>
+            <div className="layout-sidebar" onClick={onSidebarClick}>
+                <AppMenu model={menu} onMenuItemClick={onMenuItemClick} layoutColorMode={layoutColorMode}/>
             </div>
-        </>
+
+            <div className="layout-main-container">
+                <div className="layout-main">
+                    <Switch>
+                        <PrivateRoute role={RoleConstants.ROLE_USER} key="dashboard" exact path="/dashboard" component={<Dashboard/>}/>
+                        <PrivateRoute role={RoleConstants.ROLE_USER} key="request-management" exact path="/request" component={<RequestManagement/>}/>
+                        <PrivateRoute role={RoleConstants.ROLE_USER} key="workspace-management" exact path="/workspace" component={<WorkspaceManagement/>}/>
+
+                        <Route path="/login" exact component={Login}/>
+                    </Switch>
+                </div>
+
+                <AppFooter layoutColorMode={layoutColorMode}/>
+            </div>
+
+            <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
+                       layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} />
+
+            <CSSTransition classNames="layout-mask" timeout={{enter: 200, exit: 200}} in={mobileMenuActive} unmountOnExit>
+                <div className="layout-mask p-component-overlay"></div>
+            </CSSTransition>
+        </div>
     );
 }
 

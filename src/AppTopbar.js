@@ -57,7 +57,7 @@ export const AppTopbar = (props) => {
 
             <ul className={classNames("layout-topbar-menu lg:flex origin-top", {'layout-topbar-menu-mobile-active': props.mobileTopbarMenuActive})}>
                 <li>
-                    <div className="p-mr-3 topbar-button">
+                    <div className="topbar-button p-mr-3">
                         {getUserName()}
                     </div>
                 </li>

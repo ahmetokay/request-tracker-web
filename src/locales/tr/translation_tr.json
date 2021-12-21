@@ -3,7 +3,7 @@
         "changeLanguage": "Dili Değiştir",
         "buttons": {
             "login": "Giriş",
-            "create": "Yeni",
+            "create": "Yeni Kayıt",
             "edit": "Düzenle",
             "delete": "Sil",
             "yes": "Evet",
@@ -36,7 +36,8 @@
     },
     "menu": {
         "dashboard": "Pano",
-        "requestManagement": "İstek Yönetimi"
+        "requestManagement": "İstek Yönetimi",
+        "workspaceManagement": "Çalışma Alanı Yönetimi"
     },
     "roles": {
         "roleAdmin": "Admin",
@@ -56,6 +57,16 @@
             "url": "Url",
             "workspace": "Çalışma Alanı",
             "delete": "İstek Sil"
+        },
+        "requestHistory": {
+            "title": "Request History",
+            "responseCode": "Dönüş Kodu",
+            "body": "Body",
+            "requestDate": "İstek Zamanı"
+        },
+        "workspaceManagement": {
+            "name": "İsim",
+            "createTime": "Oluşturma Zamanı"
         }
     }
 }

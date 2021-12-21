@@ -38,7 +38,8 @@
     },
     "menu": {
         "dashboard": "Dashboard",
-        "requestManagement": "Request Management"
+        "requestManagement": "Request Management",
+        "workspaceManagement": "Workspace Management"
     },
     "roles": {
         "roleAdmin": "Role Admin",
@@ -58,6 +59,16 @@
             "url": "Url",
             "workspace": "Workspace",
             "delete": "Delete Request"
+        },
+        "requestHistory": {
+            "title": "İstek Tarihçesi",
+            "responseCode": "Response Code",
+            "body": "Body",
+            "requestDate": "Request Date"
+        },
+        "workspaceManagement": {
+            "name": "Name",
+            "createTime": "Create Time"
         }
     }
 }

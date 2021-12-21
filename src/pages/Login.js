@@ -31,22 +31,19 @@ export const Login = (props) => {
         <>
             <Toast ref={toast}/>
 
-            <div className="card p-fluid">
-                <h5>Login Application</h5>
-                <div className="field grid">
-                    <label htmlFor="name3" className="col-12 mb-2 md:col-2 md:mb-0">Username</label>
-                    <div className="col-12 md:col-10">
+            <div className="login">
+                <div className="card p-fluid">
+                    <div className="p-field">
+                        <label>{t('pages.login.username')}</label>
                         <InputText value={username} type="text" onChange={(e) => setUsername(e.target.value)}/>
                     </div>
-                </div>
-                <div className="field grid">
-                    <label htmlFor="email3" className="col-12 mb-2 md:col-2 md:mb-0">Password</label>
-                    <div className="col-12 md:col-10">
+                    <div className="p-field">
+                        <label>{t('pages.login.password')}</label>
                         <InputText value={password} type="password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
-                </div>
 
-                <Button label="Login" onClick={loginButtonOnClick}/>
+                    <Button label={t('common.buttons.login')} onClick={loginButtonOnClick}/>
+                </div>
             </div>
         </>
     );
